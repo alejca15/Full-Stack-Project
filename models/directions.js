@@ -5,14 +5,13 @@ module.exports = (sequelize) => {
   class Directions extends Model {
     static associate(models) {
       //--------Relaciones-------//
-
-      //Has many
       this.hasMany(models.Addresses, { foreignKey: "direction_id" });
     }
+    
   }
   Directions.init(
     {
-      direction: {
+      direction_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -20,6 +19,7 @@ module.exports = (sequelize) => {
     {
       sequelize,
       modelName: "Directions",
+      tableName:"Directions",
     }
   );
   return Directions;

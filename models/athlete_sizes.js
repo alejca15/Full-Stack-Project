@@ -2,11 +2,18 @@
 const { Model, DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   class Athlete_sizes extends Model {
-    static associate(models) {}
+    static associate(models) {
+      //--------Relaciones-------//
+      //Belongs To
+      this.belongsTo(models.Athletes, { foreignKey: "athlete_id" });
+      this.belongsTo(models.Shirt_sizes, { foreignKey: "shirt_sizes_id" });
+      this.belongsTo(models.Shoe_sizes, { foreignKey: "shoe_sizes_id" });
+    }
+    
   }
   Athlete_sizes.init(
     {
-      shoe_size_id: {
+      shoe_sizes_id: {
         type: DataTypes.INTEGER,
         allowNull:false,
         references:{
@@ -15,7 +22,7 @@ module.exports = (sequelize) => {
         }
       },
 
-      shirt_size_id: {
+      shirt_sizes_id: {
         type: DataTypes.INTEGER,
         allowNull:false,
         references:{

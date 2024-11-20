@@ -1,27 +1,30 @@
 "use strict";
 const { Model, DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
-  class Mentors_by_athletes extends Model {
+  class Athlete_records extends Model {
     static associate(models) {
       //--------Relaciones-------//
       //Belongs To
-      this.belongsTo(models.Mentors, { foreignKey: "mentor_id" });
       this.belongsTo(models.Athletes, { foreignKey: "athlete_id" });
     }
     
   }
-  Mentors_by_athletes.init(
+  Athlete_records.init(
     {
-      mentor_id: {
-        type: DataTypes.INTEGER,
+      folder_id: {
+        type:DataTypes.STRING,
         allowNull:false,
-        references:{
-          model:"Mentors",
-          key:"id",
-        },
+      },
+      file_name:{
+        type:DataTypes.STRING,
+        allowNull:false,
+      },
+      file_url:{
+        type:DataTypes.STRING,
+        allowNull:false,
       },
       athlete_id: {
-        type: DataTypes.INTEGER,
+        type:DataTypes.STRING,
         allowNull:false,
         references:{
           model:"Athletes",
@@ -31,8 +34,8 @@ module.exports = (sequelize) => {
     },
     {
       sequelize,
-      modelName: "Mentors_by_athletes",
+      modelName: "Athlete_records",
     }
   );
-  return Mentors_by_athletes;
+  return Athlete_records;
 };

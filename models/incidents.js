@@ -1,43 +1,43 @@
 "use strict";
 const { Model, DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
-  class Locations extends Model {
+  class Incidents extends Model {
     static associate(models) {
       //--------Relaciones-------//
       //Belongs To
-      this.belongsTo(models.Addresses, { foreignKey: "address_id" });
+      this.belongsTo(models.Athletes, { foreignKey: "athlete_id" });
       //Has many
-      this.hasMany(models.Counselors, { foreignKey: "location_id" });
+      this.hasMany(models.Comments_by_incidents, { foreignKey: "incident_id" });
     }
     
   }
-
-  Locations.init(
+  Incidents.init(
     {
-      location_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      location_contact: {
+      incident_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      address_id: {
+      incident_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      incident_state: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      athlete_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          Model: "Addresses",
+          model: "Athletes",
           key: "id",
         },
       },
     },
     {
       sequelize,
-      modelName: "Locations",
+      modelName: "Incidents",
     }
   );
-
-  return Locations;
+  return Incidents;
 };

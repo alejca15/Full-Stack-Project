@@ -3,16 +3,20 @@ const { Model, DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   class Athletes extends Model {
     static associate(models) {
-    //--------Relaciones-------//
-      //Has many
-      this.hasMany(models.Meetings, { foreignKey: "athlete_id" });
-      //Belongs to
+      //--------Relaciones-------//
+      //Belongs To
       this.belongsTo(models.Addresses, { foreignKey: "address_id" });
-      //Belongs to Many
-      this.belongsToMany(models.Mentor, { through: "mentors_by_athlete", foreignKey: "athlete_id" });
+      //Has many
+      this.hasMany(models.Athlete_records, { foreignKey: "athlete_id" });
+      this.hasMany(models.Comments_by_incidents, { foreignKey: "athlete_id" });
+      this.hasMany(models.Incidents, { foreignKey: "athlete_id" });
+      this.hasMany(models.Parents, { foreignKey: "athlete_id" });
+      //Belongs To Many
+      this.belongsToMany(models.Mentors, { through: "mentors_by_athlete", foreignKey: "athlete_id" });
+      this.belongsToMany(models.Shirt_sizes, { through: "Athlete_sizes", foreignKey: "athlete_id" });
       this.belongsToMany(models.Shoe_sizes, { through: "Athlete_sizes", foreignKey: "athlete_id" });
-      this.belongsToMany(models.Shirts_sizes, { through: "Athlete_sizes", foreignKey: "athlete_id" });
     }
+    
   }
   Athletes.init(
     {
@@ -75,7 +79,7 @@ module.exports = (sequelize) => {
         allowNull:false 
       },
       addition_date: { 
-        type: DataTypes.STRING, 
+        type: DataTypes.DATE, 
         allowNull:false 
       },
       athlete_status:{ 

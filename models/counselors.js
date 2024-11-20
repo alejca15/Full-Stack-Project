@@ -4,10 +4,12 @@ module.exports = (sequelize) => {
   class Counselors extends Model {
     static associate(models) {
       //--------Relaciones-------//
-
-      //Belongs to
+      //Belongs To
       this.belongsTo(models.Locations, { foreignKey: "location_id" });
+      //Has many
+      this.hasMany(models.Comments_by_incidents, { foreignKey: "counselor_id" });
     }
+    
   }
   Counselors.init(
     {
@@ -31,6 +33,14 @@ module.exports = (sequelize) => {
       counselor_location: { 
         type: DataTypes.INTEGER, 
         allowNull: false 
+      },
+      location_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Locations",
+          key: "id",
+        },
       },
       counselor_phone: { 
         type: DataTypes.STRING, 

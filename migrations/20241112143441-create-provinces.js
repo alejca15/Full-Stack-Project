@@ -12,6 +12,7 @@ module.exports = {
       province_name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique:true,
       },
       createdAt: {
         allowNull: false,
