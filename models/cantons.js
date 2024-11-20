@@ -5,13 +5,12 @@ module.exports = (sequelize) => {
   class Cantons extends Model {
     static associate(models) {
       //--------Relaciones-------//
-
       //Belongs To
-      this.belongsTo(models.Provinces, { foreignKey: "province_id" });
-     
-      //Has Many
-      this.hasMany(models.Addresses, { foreignKey: "canton_id" });
+      this.belongsTo(models.Provinces, { foreignKey: "province_id", as: "Province" });
+      //Has many
+      this.hasMany(models.Addresses, { foreignKey: "canton_id", as: "Addresses" });
     }
+    
   }
   Cantons.init(
     {

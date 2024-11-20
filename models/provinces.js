@@ -5,11 +5,9 @@ module.exports = (sequelize) => {
   class Provinces extends Model {
     static associate(models) {
       //--------Relaciones-------//
-
-
       //Has many
-      this.hasMany(models.Cantons, { foreignKey: "province_id" });
-      this.hasMany(models.Addresses, { foreignKey: "province_id" });
+      this.hasMany(models.Cantons, { foreignKey: "province_id", as: "Cantons" });
+      this.hasMany(models.Addresses, { foreignKey: "province_id", as: "Addresses" });
     }
   }
   Provinces.init(
@@ -17,6 +15,7 @@ module.exports = (sequelize) => {
       province_name: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique:true
       },
     },
     {

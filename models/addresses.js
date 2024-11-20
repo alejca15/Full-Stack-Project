@@ -4,15 +4,15 @@ module.exports = (sequelize) => {
   class Addresses extends Model {
     static associate(models) {
       //--------Relaciones-------//
-      //Has many
-      this.hasMany(models.Locations, { foreignKey: "address_id" });
-      this.hasMany(models.Athletes, { foreignKey: "address_id" });
-
       //Belongs To
       this.belongsTo(models.Cantons, { foreignKey: "canton_id" });
       this.belongsTo(models.Provinces, { foreignKey: "province_id" });
-      this.belongsTo(models.Direction, { foreignKey: "direction_id" });
+      this.belongsTo(models.Directions, { foreignKey: "direction_id" });
+      //Has many
+      this.hasMany(models.Athletes, { foreignKey: "address_id" });
+      this.hasMany(models.Locations, { foreignKey: "address_id" });
     }
+    
   }
   Addresses.init(
     {

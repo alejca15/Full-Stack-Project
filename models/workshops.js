@@ -1,39 +1,37 @@
 "use strict";
 const { Model, DataTypes } = require("sequelize");
-
 module.exports = (sequelize) => {
-  class Meetings extends Model {
+  class Workshops extends Model {
     static associate(models) {
       //--------Relaciones-------//
       //Has many
-      this.hasMany(models.Files_by_meeting, { foreignKey: "meeting_id" });
-      this.hasMany(models.Events_on_calendar, { foreignKey: "meeting_id" });
+      this.hasMany(models.Workshop_history, { foreignKey: "workshop_id" });
+      this.hasMany(models.Events_on_calendar, { foreignKey: "workshop_id" });
     }
+    
   }
-  Meetings.init(
+  Workshops.init(
     {
-      meeting_name: {
+      workshop_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      meeting_initial_date: {
+      workshop_date: {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      meeting_final_date: {
-        type: DataTypes.DATE,
-        allowNull: false,
+      worksop_location: {
+        type: DataTypes.STRING,
       },
-      meeting_URL: {
+      workshop_state: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
       },
     },
     {
       sequelize,
-      modelName: "Meetings",
+      modelName: "Workshops",
     }
   );
-  return Meetings;
+  return Workshops;
 };
