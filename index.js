@@ -8,7 +8,11 @@ const Athletes_route = require('./routes/athletes_routes'); // Importa las rutas
 const Shirt_sizes_route = require('./routes/shirt_sizes_routes'); // Importa las rutas de las tallas de camisa
 const Shoe_sizes_route = require('./routes/shoe_sizes_routes'); // Importa las rutas de las tallas de calzado
 const Athlete_sizes_route = require('./routes/athlete_sizes_routes'); // Importa las rutas de las tallas de los atletas
-
+const Parents = require('./routes/parents_routes'); // Importa las rutas de los Encargados
+const Locations = require('./routes/locations_routes'); // Importa las rutas de las Sedes
+const Mentors = require('./routes/mentors_routes'); // Importa las rutas de los Mentores
+const MentorsAndAthletes = require('./routes/mentors_by_athletes_routes'); // Importa las rutas de los Mentores y sus atletas
+const Athletes_records = require('./routes/athletes_records_routes'); // Importa las rutas de los expedientes de los atletas
 
 const app = express();
 const PORT = 3000;
@@ -31,7 +35,11 @@ app.use('/Athletes', Athletes_route);
 app.use('/Shirtsizes', Shirt_sizes_route);
 app.use('/Shoesizes', Shoe_sizes_route);
 app.use('/Athletessizes', Athlete_sizes_route);
-
+app.use('/Parents', Parents);
+app.use('/Locations', Locations);
+app.use('/Mentors', Mentors);
+app.use('/MentorsAndAthletes', MentorsAndAthletes);
+app.use('/Athletes_records', Athletes_records);
 
 // Iniciar el servidor
 app.listen(PORT, () => {
