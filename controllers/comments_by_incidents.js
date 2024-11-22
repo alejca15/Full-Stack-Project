@@ -68,7 +68,7 @@ const update_comment_in_incident = async (req, res) => {
     if (!comment_in_incident) {
       return res.status(404).json({ error: "Comentario no encontrado" });
     }
-    await comment.update({
+    await comment_in_incident.update({
       comment,
       incident_id,
       counselor_id,
