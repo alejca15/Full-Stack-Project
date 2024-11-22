@@ -3,7 +3,11 @@ const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   class Admins extends Model {
-    static associate(models) {}
+    static associate(models) {
+      //--------Relaciones-------//
+      //Has many
+      this.hasMany(models.Comments_by_incidents, { foreignKey: "mentor_id" });
+    }
   }
   Admins.init(
     {

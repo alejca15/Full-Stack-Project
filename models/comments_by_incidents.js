@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
       this.belongsTo(models.Athletes, { foreignKey: "athlete_id" });
       this.belongsTo(models.Counselors, { foreignKey: "counselor_id" });
       this.belongsTo(models.Mentors, { foreignKey: "mentor_id" });
+      this.belongsTo(models.Admins, { foreignKey: "admin_id" });
     }
     
   }
@@ -39,6 +40,14 @@ module.exports = (sequelize) => {
         allowNull: true,
         references: {
           model: "Mentors",
+          key: "id",
+        },
+      },
+      admin_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+          model: "Admins",
           key: "id",
         },
       },
