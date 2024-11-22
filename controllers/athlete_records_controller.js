@@ -1,9 +1,9 @@
-const { Athletes_records } = require("../models");
+const { Athlete_records } = require("../models");
 
 //----------------------Get------------------------//
 const get_athletes_records = async (req, res) => {
   try {
-    const all_athletes_records = await Athletes_records.findAll();
+    const all_athletes_records = await Athlete_records.findAll();
     res.status(200).json(all_athletes_records);
   } catch (error) {
     console.error(error);
@@ -14,7 +14,7 @@ const get_athletes_records = async (req, res) => {
 const post_athlete_records = async (req, res) => {
   try {
     const { folder_id, file_name, file_url, athlete_id } = req.body;
-    const Address = await Athletes_records.create({
+    const Address = await Athlete_records.create({
       folder_id,
       file_name,
       file_url, 

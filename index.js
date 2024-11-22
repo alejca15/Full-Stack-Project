@@ -13,6 +13,10 @@ const Locations = require('./routes/locations_routes'); // Importa las rutas de 
 const Mentors = require('./routes/mentors_routes'); // Importa las rutas de los Mentores
 const MentorsAndAthletes = require('./routes/mentors_by_athletes_routes'); // Importa las rutas de los Mentores y sus atletas
 const Athletes_records = require('./routes/athletes_records_routes'); // Importa las rutas de los expedientes de los atletas
+const Counselors = require('./routes/counselors_routes'); // Importa las rutas de los Orientadores
+const Comments = require('./routes/comments_by_incidents_routes'); // Importa las rutas de los Comentarios
+const Admins = require('./routes/admins_routes'); // Importa las rutas de los Admins
+const Incidents = require('./routes/incidents_routes'); // Importa las rutas de los Admins
 
 const app = express();
 const PORT = 3000;
@@ -39,7 +43,11 @@ app.use('/Parents', Parents);
 app.use('/Locations', Locations);
 app.use('/Mentors', Mentors);
 app.use('/MentorsAndAthletes', MentorsAndAthletes);
-app.use('/Athletes_records', Athletes_records);
+app.use('/AthletesRecords', Athletes_records);
+app.use('/Counselors', Counselors);
+app.use('/Comments', Comments);
+app.use('/Admins', Admins);
+app.use('/Incidents', Incidents);
 
 // Iniciar el servidor
 app.listen(PORT, () => {

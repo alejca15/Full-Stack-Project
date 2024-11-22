@@ -21,12 +21,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      admin_mail: {
+      counselor_mail: {
         type: Sequelize.STRING,
         allowNull: false,
         unique:true,
       },
-      counselor_location: {
+      location_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references:{
@@ -41,12 +41,16 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal(
+          "CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+        ),
+      },
     });
   },
   async down(queryInterface, Sequelize) {
